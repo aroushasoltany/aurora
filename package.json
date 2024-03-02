@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@radix-ui/react-navigation-menu": "^1.1.4",
+=======
+    "@radix-ui/react-avatar": "^1.0.4",
+>>>>>>> 6a46aca4de024505ee98abaf37032125c5dd96ef
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
