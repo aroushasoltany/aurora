@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import parentAvatar from "@/public/parent-avatar.png";
+import Image from "next/image";
 
 // background
 // div className="bg-blue-200 h-screen" style={{
