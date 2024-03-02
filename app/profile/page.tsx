@@ -12,29 +12,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import parentAvatar from "@/public/parent-avatar.png";
 
+// background
+// div className="bg-blue-200 h-screen" style={{
+//   backgroundImage: "url(/unihack.jpg)"
+// }}
 
-
-// WORKING ON PROFILE FRONT END
+// TODO
+  // connect with mongo database to get user profike info
+  // change avatar pic
 export default function Profile() {
     const router = useRouter();
   return (
-    <div className="bg-blue-200 h-screen">
     <div>
+    <div className="bg-blue-200 1/3">
       <div className="flex flex-col justify-center items-center">
         <div className="flex-1">
         <div className="h-64 flex justify-center items-center mx-auto">
             <Avatar>
-              <AvatarImage src="https://png.pngtree.com/png-clipart/20201029/ourmid/pngtree-circle-clipart-blue-circle-png-image_2381949.jpg" alt="@shadcn"/>
+              <AvatarImage src="https://github.com/shadcn.png" alt="Parent User"/>
               <AvatarFallback>Parent-Avatar</AvatarFallback>
             </Avatar>
             </div>
         </div>
       </div>
+    
     </div>
       
-    <div className="flex justify-center mx-auto mb-20" >
-      <p>[User's] Information</p>
+    <div className="bg-blue-200 flex justify-center mx-auto mb-20" >
+      <p className="font-sans text-3xl">[User's] Information</p>
     </div>
 
     <div>
@@ -42,13 +49,13 @@ export default function Profile() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Email</TableHead>
-              <TableHead>...@gmail.com</TableHead>
+              <TableCell>...@gmail.com</TableCell>
             </TableRow>
           </TableHeader>
 
           <TableBody>
             <TableRow>
-              <TableCell className="font-medium">Username</TableCell>
+              <TableHead className="font-medium">Username</TableHead>
               <TableCell>123AllyP</TableCell>
             </TableRow>
           </TableBody>
@@ -56,13 +63,13 @@ export default function Profile() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Password</TableHead>
-              <TableHead>********</TableHead>
+              <TableCell>********</TableCell>
             </TableRow>
           </TableHeader>
 
           <TableBody>
             <TableRow>
-              <TableCell className="font-medium">Children</TableCell>
+              <TableHead className="font-medium">Children</TableHead>
               <TableCell>Name1, Name2</TableCell>
             </TableRow>
           </TableBody>
@@ -70,12 +77,11 @@ export default function Profile() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Books</TableHead>
-              <TableHead>title1, title2</TableHead>
+              <TableCell>title1, title2</TableCell>
             </TableRow>
           </TableHeader>
       </Table>
     </div>
-
     </div>
   )
 }
