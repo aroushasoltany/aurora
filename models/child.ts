@@ -8,9 +8,11 @@ const ChildSchema = new Schema({
     colour: String,
     icon: String,
   },
-  favGenre: String,
-  favBooks: String,
-  favAnimal: String,
+  favs: {
+    genre: String,
+    books: String,
+    animal: String,
+  },
 });
 
 const Child = models.Child || model("Child", ChildSchema);

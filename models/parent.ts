@@ -4,7 +4,6 @@ import { BookSchema } from './book';
 
 const ParentSchema = new Schema({
   email: String,
-  name: String,
   username: String,
   password: String,
   children: [ChildSchema],
