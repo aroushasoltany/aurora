@@ -26,7 +26,7 @@ export default function Profile() {
     const router = useRouter();
   return (
     <div>
-    <div className="bg-blue-200 1/3">
+    <div className="bg-blue-200">
       <div className="flex flex-col justify-center items-center">
         <div className="flex-1">
         <div className="h-64 flex justify-center items-center mx-auto">
@@ -41,7 +41,7 @@ export default function Profile() {
     </div>
       
     <div className="bg-blue-200 flex justify-center mx-auto mb-20" >
-      <p className="font-sans text-3xl">[User's] Information</p>
+      <p className="font-sans text-3xl">Hi [User]!</p>
     </div>
 
     <div>
