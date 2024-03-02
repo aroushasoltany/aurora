@@ -54,6 +54,7 @@ export default function CreateReaderOne(
             e.preventDefault();
             setName(e.target.value);
           }}
+          disabled={loading}
         />
       </div>
 
@@ -67,6 +68,7 @@ export default function CreateReaderOne(
                 "w-full max-w-sm justify-start text-left font-normal",
                 !dob && "text-muted-foreground"
               )}
+              disabled={loading}
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
               {dob ? format(dob, "PPP") : <span>Pick a date</span>}
@@ -89,6 +91,7 @@ export default function CreateReaderOne(
           onValueChange={(v) => setGender(v)}
           defaultValue="other"
           className="space-y-1"
+          disabled={loading}
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="male" />
@@ -118,6 +121,7 @@ export default function CreateReaderOne(
           e.preventDefault();
           checkDetails();
         }}
+        disabled={loading}
       >
         Next
       </Button>
