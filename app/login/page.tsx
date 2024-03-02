@@ -51,7 +51,7 @@ export default function Login() {
       <div className="flex-1 bg-[#ffe5cc] flex items-center justify-center">
         <Image
           src={landingImg}
-          alt="Aurora logo"
+          alt="Landing image"
           width={550}
           height={100}
         />
