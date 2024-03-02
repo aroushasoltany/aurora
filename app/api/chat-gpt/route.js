@@ -15,8 +15,7 @@ export const POST = async (req, { params }) => {
       max_tokens: 1000,
     });
 
-    console.log("RESPONSEEEEEEEEE")
-    console.log(response);
+    console.log(response?.choices[0]?.message);
 
     return new Response(
       { status: 200 }
