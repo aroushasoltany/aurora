@@ -1,29 +1,21 @@
 import { connectToDB } from "@/utils/database";
 import { Parent } from "@/models/parent";
 
-export const GET = async (req, { params }) => {
+export const POST = async (req) => {
+  let { username, password } = await req.json();
+  username = username.toLowerCase();
+
   try {
     await connectToDB();
 
-    const { username, password } = params;
+    const parent = await Parent.findOne({ username, password });
 
-    const parent = await Parent.find({ username, password });
+    const message = parent ? "User verified" : "Invalid username or password";
+    const status = parent ? 200 : 401;
 
-    if (!parent) {
-      return new Response(
-        "Invalid username or password",
-        {  status: 401 }
-      );
-    }
-
-    return new Response(
-      "User verified",
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ message }), { status });
   } catch (error) {
-    return new Response(
-      "Failed to fetch parent",
-      { status: 500 }
-    );
+    const message = "Failed to fetch parent"
+    return new Response(JSON.stringify({ message, error }), { status: 500 });
   }
 }

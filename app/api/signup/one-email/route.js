@@ -2,38 +2,35 @@ import { connectToDB } from "@/utils/database";
 import { Parent } from "@/models/parent";
 import EmailValidator from "email-validator";
 
-export const GET = async (req, { params }) => {
+export const POST = async (req) => {
+  let { email } = await req.json();
+  email = email.toLowerCase();
+
   try {
-    await connectToDB();
-
-    const { email } = params;
-
     const valid = EmailValidator.validate(email);
 
     if (!valid) {
-      return new Response(
-        "Invalid email address",
-        { status: 404 }
-      );
+      const message = "Invalid email address";
+      return new Response(JSON.stringify({ message }), { status: 404 });
     }
-
-    const exists = await Parent.exists({ email });
-
-    if (exists) {
-      return new Response(
-        "A user with this email already exists",
-        { status: 401 }
-      );
-    }
-
-    return new Response(
-      "Valid email address",
-      { status: 200 }
-    );
   } catch (error) {
-    return new Response(
-      "Failed to fetch parent",
-      { status: 500 }
-    );
+    const message = "Failed to check email using validator"
+    return new Response(JSON.stringify({ message, error }), { status: 500 });
+  }
+
+  try {
+    await connectToDB();
+
+    const parent = await Parent.findOne({ email });
+
+    const message = parent
+      ? "A user with this email already exists"
+      : "Valid email";
+    const status = parent ? 404 : 200;
+
+    return new Response(JSON.stringify({ message }), { status });
+  } catch (error) {
+    const message = "Failed to fetch parent"
+    return new Response(JSON.stringify({ message, error }), { status: 500 });
   }
 }

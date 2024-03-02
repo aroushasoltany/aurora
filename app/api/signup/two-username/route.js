@@ -1,48 +1,38 @@
 import { connectToDB } from "@/utils/database";
 import { Parent } from "@/models/parent";
 
-export const GET = async (req, { params }) => {
+export const POST = async (req) => {
+  let { username } = await req.json();
+  username.toLowerCase();
+
+  let status = 200;
+  let message = "Valid username";
+
+  if (username.length < 4  || username.length > 15) {
+    status = 404;
+    message = "Username must be 4-15 characters"
+  } else if (!/^[a-z0-9._]+$/.test(username)) {
+    status = 404;
+    message = "Username can only contain a-z, 0-9, '_' and '.'"
+  }
+
+  if (status !== 200) {
+    return new Response(JSON.stringify({ message }), { status });
+  }
+
   try {
     await connectToDB();
 
-    let { username } = params;
-    username = username.toLowerCase();
-    
+    const parent = await Parent.findOne({ username });
 
-    // Check length
-    if (username.length < 4  || username.length > 15) {
-      return new Response(
-        "Username must be between 4 and 15 characters",
-        { status: 404 }
-      )
+    if (parent) {
+      status = 404;
+      message = "A user with this username already exists";
     }
 
-    // Check alphanumeric + "_", "."
-    const pattern = /^[a-z0-9._]+$/
-    if (pattern.test(username)) {
-      return new Response(
-        "Username must only consist of letters, numbers, . and _",
-        { status: 404 }
-      )
-    }
-
-    const exists = await Parent.exists({ username });
-
-    if (exists) {
-      return new Response(
-        "A user with this username already exists",
-        { status: 401 }
-      );
-    }
-
-    return new Response(
-      "Valid username",
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ message }), { status });
   } catch (error) {
-    return new Response(
-      "Failed to fetch parent",
-      { status: 500 }
-    );
+    message = "Failed to fetch parent"
+    return new Response(JSON.stringify({ message, error }), { status: 500 });
   }
 }

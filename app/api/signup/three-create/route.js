@@ -2,24 +2,30 @@ import { connectToDB } from "@/utils/database";
 import { Parent } from "@/models/parent";
 
 export const POST = async (req) => {
-  const { email, username, password, confirmPassword } = await req.json();
+  let { email, username, password, confirmPassword } = await req.json();
+  email = email.toLowerCase();
+  username = username.toLowerCase();
+
+  let status = 201;
+  let message = "New user created";
 
   if (password.length < 8 || password.length > 15) {
-    return new Response(
-      "Password must be between 8 and 15 characters",
-      { status: 404 }
-    );
+    status = 404;
+    message = "Password must be 8-15 characters";
   }
 
   if (password !== confirmPassword) {
-    return new Response(
-      "Password and confirm password are different",
-      { status: 404 }
-    );
+    status = 404;
+    message = "Password and confirm password don't match"
+  }
+
+  if (status !== 200) {
+    return new Response(JSON.stringify({ message }), { status });
   }
 
   try {
     await connectToDB();
+
     const newParent = await new Parent({
       email,
       username,
@@ -29,12 +35,10 @@ export const POST = async (req) => {
     });
 
     await newParent.save();
-    
-    return new Response(
-      "New user created",
-      { status: 201 }
-    );
+
+    return new Response(JSON.stringify({ message }), { status });
   } catch (error) {
-    return new Response("Failed to create a new user.", { status: 500 });
+    message = "Failed to create a new parent"
+    return new Response(JSON.stringify({ message, error }), { status: 500 });
   }
 }
