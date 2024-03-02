@@ -95,7 +95,7 @@ export default function SignupOne(
         className="w-full max-w-sm"
         onClick={(e) => {
           e.preventDefault();
-          router.push("/signup");
+          router.push("/login");
         }}
         disabled={loading}
       >
