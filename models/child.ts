@@ -4,13 +4,10 @@ const ChildSchema = new Schema({
   name: String,
   gender: String,
   dob: Date,
-  avatar: {
-    colour: String,
-    icon: String,
-  },
+  avatar: String,
   favs: {
     genre: String,
-    books: String,
+    book: String,
     animal: String,
   },
 });

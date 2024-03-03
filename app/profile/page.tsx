@@ -1,8 +1,10 @@
 "use client"
 
-import React from 'react';
+import Image from "next/image";
+import React, { useEffect } from 'react';
+import logoBlack from "@/public/logos/aurora-black.png";
+import parentAvatar from "@/public/unicorn.png";
 import { useRouter } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Table,
   TableBody,
@@ -11,80 +13,124 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import parentAvatar from "@/public/parent-avatar.png";
-import Image from "next/image";
+} from "@/components/ui/table";
+import { useState } from "react";
 
-// background
-// div className="bg-blue-200 h-screen" style={{
-//   backgroundImage: "url(/unihack.jpg)"
-// }}
-
-// TODO
-  // connect with mongo database to get user profike info
-  // change avatar pic
 export default function Profile() {
     const router = useRouter();
-  return (
-    <div>
-    <div className="bg-blue-200">
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex-1">
-        <div className="h-64 flex justify-center items-center mx-auto">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="Parent User"/>
-              <AvatarFallback>Parent-Avatar</AvatarFallback>
-            </Avatar>
+    // const [email, setEmail] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
+    const [profile, setProfile] = useState('');
+    const [error, setError] = useState('');
+
+    const getData = async () => {
+        try {
+            const response = await fetch(
+                "/api/profile",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        
+                    }),
+                },
+            );
+
+            if (response.ok) {
+                // setProfile(response.data);
+                router.push("/profile");
+            } else {
+                const data = await response.json();
+                if (response.status == 500) {
+                    console.log(response);
+                } else {
+                    setError(data.message);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        } 
+    };
+
+    // front-end:
+    return (
+        <div className="grid h-screen grid-cols-2">
+            <div className="bg-blue-200">
+                <div className="h-screen max-w-full flex justify-center items-center">
+                        <Image
+                        src={parentAvatar}
+                        alt="Aurora logo"
+                        width={650}
+                        height={650}
+                        />
+                </div>
+                <div className="">
+                </div>
             </div>
+
+        <div className="flex justify-center items-center">
+                    
+            <div className="grid h-screen grid-rows-2">
+                <div className="flex justify-center items-center">
+                    <Image
+                        src={logoBlack}
+                        alt="Aurora logo"
+                        width={100}
+                        height={100}
+                        />
+            </div>
+   
+                
+            <div className="">
+            
+                <Table>
+                <TableCaption>[User's] Aurora Information</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Email</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">...@gmail.com</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                    <TableHead className="font-medium">Username</TableHead>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className="text-right">AllyP</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Password</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">xxxx</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                    <TableHead className="font-medium">Family</TableHead>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className="text-right">Sarah</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Library</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">Book1</TableCell>
+                    </TableRow>
+                </TableHeader>
+                </Table>
+            </div>
+         </div>
+
         </div>
-      </div>
-    
-    </div>
-      
-    <div className="bg-blue-200 flex justify-center mx-auto mb-20" >
-      <p className="font-sans text-3xl">Hi [User]!</p>
-    </div>
-
-    <div>
-      <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Email</TableHead>
-              <TableCell>...@gmail.com</TableCell>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            <TableRow>
-              <TableHead className="font-medium">Username</TableHead>
-              <TableCell>123AllyP</TableCell>
-            </TableRow>
-          </TableBody>
-
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Password</TableHead>
-              <TableCell>********</TableCell>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            <TableRow>
-              <TableHead className="font-medium">Children</TableHead>
-              <TableCell>Name1, Name2</TableCell>
-            </TableRow>
-          </TableBody>
-
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Books</TableHead>
-              <TableCell>title1, title2</TableCell>
-            </TableRow>
-          </TableHeader>
-      </Table>
-    </div>
-    </div>
-  )
+            
+        </div>
+    )
 }
-
-

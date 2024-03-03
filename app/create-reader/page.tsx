@@ -7,12 +7,16 @@ import { Progress } from "@/components/ui/progress";
 import CreateReaderOne from "@/components/create-reader/one-details";
 import CreateReaderTwo from "@/components/create-reader/two-avatar";
 import CreateReaderThree from "@/components/create-reader/three-favs";
+import { useRouter } from "next/navigation";
 
 export default function CreateReader() {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const [dob, setDob] = useState<Date>();
   const [gender, setGender] = useState('other');
+  const [avatar, setAvatar] = useState('');
   const [step, setStep] = useState(1);
   
   return (
@@ -55,9 +59,19 @@ export default function CreateReader() {
           />
           : step === 2
           ? <CreateReaderTwo
+            loading={loading}
+            setLoading={setLoading}
+            setAvatar={setAvatar}
+            setStep={setStep}
           />
           : step === 3
           && <CreateReaderThree
+            router={router}
+            name={name}
+            dob={dob}
+            gender={gender}
+            avatar={avatar}
+            setStep={setStep}
           />
         }
       </div>
