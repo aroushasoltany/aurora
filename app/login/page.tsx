@@ -17,7 +17,6 @@ export default function Login() {
   const [error, setError] = useState('');
 
   const doLogin = async () => {
-    // TODO: need to add the parent's username to session storage
     try {
       const response = await fetch(
         "/api/login",
@@ -31,7 +30,7 @@ export default function Login() {
       );
   
       if (response.ok) {
-        router.push("/home");
+        router.push("/");
       } else {
         const data = await response.json();
         if (response.status === 500) {

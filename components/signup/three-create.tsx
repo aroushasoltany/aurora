@@ -24,7 +24,6 @@ export default function SignupThree(
 
   const createUser = async () => {
     try {
-      // TODO: need to add the parent's username to session storage
       const response = await fetch(
         "/api/signup/three-create",
         {
@@ -39,7 +38,7 @@ export default function SignupThree(
       );
   
       if (response.ok) {
-        router.push("/create-reader")
+        router.push("/create-reader");
       } else {
         const data = await response.json();
         if (response.status === 500) {

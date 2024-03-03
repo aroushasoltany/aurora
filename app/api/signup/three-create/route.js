@@ -1,5 +1,6 @@
 import { connectToDB } from "@/utils/database";
 import { Parent } from "@/models/parent";
+import { cookies } from "next/headers";
 
 export const POST = async (req) => {
   let { email, username, password, confirmPassword } = await req.json();
@@ -19,7 +20,7 @@ export const POST = async (req) => {
     message = "Password and confirm password don't match"
   }
 
-  if (status !== 200) {
+  if (status !== 201) {
     return new Response(JSON.stringify({ message }), { status });
   }
 
@@ -35,6 +36,9 @@ export const POST = async (req) => {
     });
 
     await newParent.save();
+
+    const cookiesStore = cookies();
+    cookiesStore.set('username', username);
 
     return new Response(JSON.stringify({ message }), { status });
   } catch (error) {

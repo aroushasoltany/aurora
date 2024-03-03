@@ -1,9 +1,13 @@
 import { connectToDB } from "@/utils/database";
 import { Child } from "@/models/child";
+import { Parent } from "@/models/parent";
+import { cookies } from "next/headers";
 
 export const POST = async (req) => {
-  // TODO: need to also add this new child to the parent's children array
   const { name, dob, gender, avatar, favs } = await req.json();
+  const cookiesStore = cookies();
+  const user = cookiesStore.get('username');
+  const username = user.value;
 
   try {
     await connectToDB();
@@ -17,6 +21,21 @@ export const POST = async (req) => {
     });
 
     await newChild.save();
+
+    const parent = await Parent.findOne({ username });
+    
+    const children = parent?.children;
+    
+    if (!parent || !children) {
+      const message = parent
+        ? "Failed to access parent's children"
+        : "Failed to find the parent";
+      return new Response(JSON.stringify({ message }), { status: 404 });
+    }
+    
+    const newChildren = [...children, newChild];
+
+    await Parent.updateOne({ username }, { children: newChildren });
 
     const message = "New reader/child created";
     return new Response(JSON.stringify({ message }), { status: 201 });

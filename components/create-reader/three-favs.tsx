@@ -32,7 +32,6 @@ export default function CreateReaderThree(
       setLoading(false);
     } else {
       try {
-        // TODO: need to get the parent from the session storage and pass their username in the req
         const response = await fetch(
           "/api/create-reader",
           {
@@ -52,7 +51,7 @@ export default function CreateReaderThree(
         );
 
         if (response.ok) {
-          router.push("/home");
+          router.push("/");
         } else {
           console.log(error);
         }

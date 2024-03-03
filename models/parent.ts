@@ -12,4 +12,4 @@ const ParentSchema = new Schema({
 
 const Parent = models.Parent || model("Parent", ParentSchema);
 
-export default Parent;
+export { Parent };
