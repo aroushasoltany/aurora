@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 
-
 import pinkPrincessCastle from "@/public/pink-princess-castle.jpg";
 import logoWhite from "@/public/logos/aurora-white.png";
 import { Button } from "@/components/ui/button";

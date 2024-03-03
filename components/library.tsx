@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import GridComponent from "@/components/GridComponent";
 import { mockbooks } from "./librarymocks";
 
-export default function Finalpage() {
+export default function Library() {
   const router = useRouter();
   const [books, setBooks] = useState([]);
 

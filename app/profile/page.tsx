@@ -19,13 +19,10 @@ import { useState } from "react";
 
 export default function Profile() {
     const router = useRouter();
-    // const [email, setEmail] = useState('');
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-    const [profile, setProfile] = useState('');
+    const [profile, setProfile] = useState();
     const [error, setError] = useState('');
 
-    const getData = async () => {
+    const getProfile = async () => {
         try {
             const response = await fetch(
                 "/api/profile",
@@ -53,7 +50,10 @@ export default function Profile() {
         } 
     };
 
-    // front-end:
+    useEffect(() => {
+        getProfile();
+    }, []);
+
     return (
         <div className="grid h-screen grid-cols-2">
             <div className="bg-blue-200">
