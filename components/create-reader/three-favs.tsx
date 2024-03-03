@@ -32,6 +32,7 @@ export default function CreateReaderThree(
       setLoading(false);
     } else {
       try {
+        // TODO: need to get the parent from the session storage and pass their username in the req
         const response = await fetch(
           "/api/create-reader",
           {
@@ -89,7 +90,6 @@ export default function CreateReaderThree(
           </div>
         }
         
-
       <Button
         variant={"default"}
         className="w-full max-w-sm"

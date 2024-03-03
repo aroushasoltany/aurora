@@ -2,6 +2,7 @@ import { connectToDB } from "@/utils/database";
 import { Child } from "@/models/child";
 
 export const POST = async (req) => {
+  // TODO: need to also add this new child to the parent's children array
   const { name, dob, gender, avatar, favs } = await req.json();
 
   try {
