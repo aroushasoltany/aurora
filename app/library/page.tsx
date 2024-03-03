@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import GridComponent from "@/components/ui/GridComponent";
+import GridComponent from "@/components/GridComponent";
 
 export default function Finalpage() {
   const router = useRouter();
@@ -18,58 +18,35 @@ export default function Finalpage() {
       contents:
         "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
       cover: "nope",
-      readers: ["katherine", "arousha"],
+      readers: [{
+        name: "katherine",
+        gender: "female",
+        dob: "alijnf",
+        avatar: {
+          colour: "red",
+          icon: "cherry",
+        },
+        favs: {
+          genre: "",
+          books: "",
+          animal: "",
+        },
+      },{
+        name: "arousha",
+        gender: "female",
+        dob: "alijnf",
+        avatar: {
+          colour: "blue",
+          icon: "dog",
+        },
+        favs: {
+          genre: "",
+          books: "",
+          animal: "",
+        },
+      }],
     },
-    {
-      bookId: 2,
-      title: "Book Two",
-      author: "parent one",
-      created: "09/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: ["katherine", "arousha"],
-    },
-    {
-      bookId: 3,
-      title: "Book Three",
-      author: "parent one",
-      created: "07/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: ["katherine", "arousha"],
-    },
-    {
-      bookId: 4,
-      title: "Book Four",
-      author: "parent one",
-      created: "09/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: ["katherine", "arousha"],
-    },
-    {
-      bookId: 5,
-      title: "Book Five",
-      author: "parent one",
-      created: "07/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: ["katherine", "arousha"],
-    },
-    {
-      bookId: 6,
-      title: "Book Six",
-      author: "parent one",
-      created: "09/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: ["katherine", "arousha"],
-    },
+  
   ];
 
   useEffect(() => {
