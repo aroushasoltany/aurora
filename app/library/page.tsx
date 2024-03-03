@@ -4,50 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import GridComponent from "@/components/GridComponent";
+import { mockbooks } from "./mocks";
 
 export default function Finalpage() {
   const router = useRouter();
   const [books, setBooks] = useState([]);
 
-  const mockbooks = [
-    {
-      bookId: 1,
-      title: "Book One",
-      author: "parent one",
-      created: "07/02/24",
-      contents:
-        "ajfoewabsvpoianfopenwa afoinewapoifnveapowinv afdnaewpofinpoewaniopi",
-      cover: "nope",
-      readers: [{
-        name: "katherine",
-        gender: "female",
-        dob: "alijnf",
-        avatar: {
-          colour: "red",
-          icon: "cherry",
-        },
-        favs: {
-          genre: "",
-          books: "",
-          animal: "",
-        },
-      },{
-        name: "arousha",
-        gender: "female",
-        dob: "alijnf",
-        avatar: {
-          colour: "blue",
-          icon: "dog",
-        },
-        favs: {
-          genre: "",
-          books: "",
-          animal: "",
-        },
-      }],
-    },
-  
-  ];
+
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -81,8 +44,8 @@ export default function Finalpage() {
         X
       </Button>
       <div className="h-screen flex flex-col p-16">
-        <h1 className="text-6xl text-purple-400 font-bold">Library</h1>
-        <div className="bg-purple-400 w-full h-1 mt-9 mb-9"></div>
+        <h1 className="text-6xl text-purple-900 font-bold">Library</h1>
+        <div className="bg-purple-900 w-full h-1 mt-9 mb-9"></div>
         <GridComponent books={mockbooks} />
       </div>
     </div>
