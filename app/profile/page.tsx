@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/table"
 import Image from "next/image";
 import logoBlack from "@/public/logos/aurora-black.png";
+import parentAvatar from "@/public/parent-avatar-removebg-preview.png"
 
 export default function Profile() {
     const router = useRouter();
@@ -22,7 +23,7 @@ export default function Profile() {
             <div className="bg-blue-200">
                 <div className="p-20 flex justify-center items-center">
                         <Image
-                        src={logoBlack}
+                        src={parentAvatar}
                         alt="Aurora logo"
                         width={200}
                         height={200}
