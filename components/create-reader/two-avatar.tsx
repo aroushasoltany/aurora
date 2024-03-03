@@ -135,20 +135,6 @@ export default function CreateReaderTwo(
         
         <TabsContent value="stroke" className="flex flex-row w-full max-w-sm px-2 space-x-2">
           <Image
-            src={`/avatars/strokes/black-stroke.png`}
-            alt="Black stroke"
-            width={55}
-            height={55}
-            className={cn(
-              "cursor-pointer",
-              stroke === 'black' && "border-[#2669F8] border-4 rounded-[30px]"
-            )}
-            onClick={(e) => {
-              e.preventDefault();
-              setStroke('black');
-            }}
-          />
-          <Image
             src={`/avatars/strokes/white-stroke.png`}
             alt="White stroke"
             width={55}
@@ -162,6 +148,20 @@ export default function CreateReaderTwo(
             onClick={(e) => {
               e.preventDefault();
               setStroke('white');
+            }}
+          />
+          <Image
+            src={`/avatars/strokes/black-stroke.png`}
+            alt="Black stroke"
+            width={55}
+            height={55}
+            className={cn(
+              "cursor-pointer",
+              stroke === 'black' && "border-[#2669F8] border-4 rounded-[30px]"
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              setStroke('black');
             }}
           />
         </TabsContent>
