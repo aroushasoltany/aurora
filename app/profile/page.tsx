@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import React, { useEffect } from 'react';
-import parentAvatar from "@/public/parent-avatar-removebg-preview.png";
+import logoBlack from "@/public/logos/aurora-black.png";
+import parentAvatar from "@/public/unicorn.png";
 import { useRouter } from "next/navigation";
 import {
   Table,
@@ -55,65 +56,78 @@ export default function Profile() {
     return (
         <div className="grid h-screen grid-cols-2">
             <div className="bg-blue-200">
-                <div className="p-20 flex justify-center items-center">
+                <div className="h-screen max-w-full flex justify-center items-center">
                         <Image
                         src={parentAvatar}
                         alt="Aurora logo"
-                        width={200}
-                        height={200}
+                        width={650}
+                        height={650}
                         />
                 </div>
-                <div>
-                    <p className="font-semibold text-center text-2xl">
-                        Welcome [User]!
-                    </p>
+                <div className="">
                 </div>
             </div>
 
         <div className="flex justify-center items-center">
-        <Table>
-            <TableCaption>[User's] Aurora Information</TableCaption>
-            <TableHeader>
-                <TableRow>
-                <TableHead className="w-[100px]">Email</TableHead>
-                <TableCell></TableCell>
-                <TableHead></TableHead>
-                <TableCell className="text-right">...@gmail.com</TableCell>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                <TableHead className="font-medium">Username</TableHead>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell className="text-right">AllyP</TableCell>
-                </TableRow>
-            </TableBody>
-            <TableHeader>
-                <TableRow>
-                <TableHead className="w-[100px]">Password</TableHead>
-                <TableCell></TableCell>
-                <TableHead></TableHead>
-                <TableCell className="text-right">xxxx</TableCell>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                <TableHead className="font-medium">Family</TableHead>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell className="text-right">Sarah</TableCell>
-                </TableRow>
-            </TableBody>
-            <TableHeader>
-                <TableRow>
-                <TableHead className="w-[100px]">Library</TableHead>
-                <TableCell></TableCell>
-                <TableHead></TableHead>
-                <TableCell className="text-right">Book1</TableCell>
-                </TableRow>
-            </TableHeader>
-            </Table>
+                    
+            <div className="grid h-screen grid-rows-2">
+                <div className="flex justify-center items-center">
+                    <Image
+                        src={logoBlack}
+                        alt="Aurora logo"
+                        width={100}
+                        height={100}
+                        />
+            </div>
+   
+                
+            <div className="">
+            
+                <Table>
+                <TableCaption>[User's] Aurora Information</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Email</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">...@gmail.com</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                    <TableHead className="font-medium">Username</TableHead>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className="text-right">AllyP</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Password</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">xxxx</TableCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                    <TableHead className="font-medium">Family</TableHead>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className="text-right">Sarah</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[100px]">Library</TableHead>
+                    <TableCell></TableCell>
+                    <TableHead></TableHead>
+                    <TableCell className="text-right">Book1</TableCell>
+                    </TableRow>
+                </TableHeader>
+                </Table>
+            </div>
+         </div>
 
         </div>
             
