@@ -7,7 +7,7 @@ const ChildSchema = new Schema({
   avatar: String,
   favs: {
     genre: String,
-    books: String,
+    book: String,
     animal: String,
   },
 });

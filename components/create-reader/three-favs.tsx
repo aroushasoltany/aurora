@@ -6,10 +6,16 @@ import { AnimalCombobox } from "./comboboxes/animal";
 import { Button } from "../ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export default function CreateReaderThree(
-  { setStep }:
+  { router, name, dob, gender, avatar, setStep }:
   {
+    router: AppRouterInstance,
+    name: string,
+    dob: Date | undefined,
+    gender: string,
+    avatar: string,
     setStep: Dispatch<SetStateAction<number>>
   }
 ) {
@@ -17,6 +23,45 @@ export default function CreateReaderThree(
   const [genre, setGenre] = useState('');
   const [book, setBook] = useState('');
   const [animal, setAnimal] = useState('');
+  const [error, setError] = useState(false);
+
+  const doCreateReader = async () => {
+    setLoading(true);
+    if (!genre || !book || !animal) {
+      setError(true);
+      setLoading(false);
+    } else {
+      try {
+        const response = await fetch(
+          "/api/create-reader",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              name,
+              dob,
+              gender,
+              avatar,
+              favs: {
+                genre,
+                book,
+                animal,
+              },
+            }),
+          },
+        );
+
+        if (response.ok) {
+          router.push("/home");
+        } else {
+          console.log(error);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <div className="space-y-4 w-full max-w-sm">
@@ -36,9 +81,23 @@ export default function CreateReaderThree(
         setAnimal={setAnimal}
       />
 
+        {
+          error && <div className="w-full max-w-sm">
+            <p className="text-sm text-destructive">
+              All these fields are required
+            </p>
+          </div>
+        }
+        
+
       <Button
         variant={"default"}
         className="w-full max-w-sm"
+        disabled={loading}
+        onClick={(e) => {
+          e.preventDefault();
+          doCreateReader();
+        }}
       >
         Create reader
       </Button>
@@ -49,6 +108,7 @@ export default function CreateReaderThree(
           e.preventDefault();
           setStep((p) => p - 1);
         }}
+        disabled={loading}
       >
         <ChevronLeftIcon className="mr-2 h-4 w-4" /> Back
       </Button>

@@ -271,6 +271,7 @@ export default function CreateReaderTwo(
           e.preventDefault();
           setStep((p) => p - 1);
         }}
+        disabled={loading}
       >
         <ChevronLeftIcon className="mr-2 h-4 w-4" /> Back
       </Button>
