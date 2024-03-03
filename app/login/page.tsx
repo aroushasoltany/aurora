@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import logoBlack from "@/public/logos/aurora-black.png";
-import landingImg from "@/public/landing.png";
+import landingImg from "@/public/lantern-boy.png";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
@@ -49,11 +49,11 @@ export default function Login() {
 
   return (
     <div className="h-screen flex flex-row">
-      <div className="flex-1 bg-[#ffe5cc] flex items-center justify-center">
+      <div className="flex-1 bg-[#2669F8] flex items-center">
         <Image
           src={landingImg}
           alt="Landing image"
-          width={550}
+          width={800}
           height={100}
         />
       </div>
