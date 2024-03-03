@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useEffect } from 'react';
 import logoBlack from "@/public/logos/aurora-black.png";
+import { Button } from "@/components/ui/button"
 import parentAvatar from "@/public/unicorn.png";
 import { useRouter } from "next/navigation";
 import {
@@ -63,6 +64,7 @@ export default function Profile() {
                         width={650}
                         height={650}
                         />
+
                 </div>
                 <div className="">
                 </div>
@@ -82,9 +84,9 @@ export default function Profile() {
    
                 
             <div className="">
-            
+                
                 <Table>
-                <TableCaption>[User's] Aurora Information</TableCaption>
+                <TableCaption></TableCaption>
                 <TableHeader>
                     <TableRow>
                     <TableHead className="w-[100px]">Email</TableHead>
@@ -126,6 +128,9 @@ export default function Profile() {
                     </TableRow>
                 </TableHeader>
                 </Table>
+                <div className="flex justify-center items-center">
+                <Button variant="outline">Logout</Button>
+                </div>
             </div>
          </div>
 
