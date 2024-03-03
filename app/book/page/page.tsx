@@ -49,7 +49,7 @@ export default function Book() {
         />
         <Button
           variant="outline"
-          className="bg-blue-900 text-white text-xl h-50 w-50 mx-4"
+          className="bg-[#FABB88] text-white text-xl h-50 w-50 mx-4"
           onClick={(e) => {
             e.preventDefault();
               router.push("/");
@@ -58,8 +58,9 @@ export default function Book() {
             X
         </Button>
       </div>
-      <div>
-
+          
+      <div className="ml-7 text-2xl">
+          <p> Title </p>
       </div>
 
       <div className="grid grid-cols-2 gap-20 content-center m-3">
@@ -97,7 +98,7 @@ export default function Book() {
         <div></div>
         <Button
           variant="outline"
-          className="bg-blue-900 text-white w-[90%] text-xl py-8"
+          className="bg-[#FABB88] text-white w-[90%] text-xl py-8"
           onClick={(e) => {
             e.preventDefault();
               router.push("/final-page");
