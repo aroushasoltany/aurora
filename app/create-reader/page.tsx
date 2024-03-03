@@ -14,7 +14,7 @@ export default function CreateReader() {
   const [dob, setDob] = useState<Date>();
   const [gender, setGender] = useState('other');
   const [avatar, setAvatar] = useState('');
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(3);
   
   return (
     <div className="h-screen bg-zinc-900 flex items-center justify-center">
@@ -63,6 +63,7 @@ export default function CreateReader() {
           />
           : step === 3
           && <CreateReaderThree
+          setStep={setStep}
           />
         }
       </div>
