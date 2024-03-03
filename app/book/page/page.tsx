@@ -10,10 +10,32 @@ import { useRouter } from "next/navigation";
 import { Repeat } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useState, useEffect } from "react";
 
 
 export default function Book() {
-    const router = useRouter();
+  const router = useRouter();
+  const [books, setBooks] = useState('');
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/library/get-books"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch books");
+        }
+        const data = await response.json();
+        setBooks(data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
   return (
     <div className="bg-blue-200 h-screen" style={{
       backgroundImage: "url(/unihack.jpg)",
@@ -36,6 +58,10 @@ export default function Book() {
             X
         </Button>
       </div>
+      <div>
+
+      </div>
+
       <div className="grid grid-cols-2 gap-20 content-center m-3">
         
         <div className="h-2/5 flex justify-center">
