@@ -18,7 +18,6 @@ import {
 import { useState } from "react";
 
 export default function Profile() {
-    const router = useRouter();
     const [profile, setProfile] = useState();
     const [error, setError] = useState('');
 
@@ -27,16 +26,13 @@ export default function Profile() {
             const response = await fetch(
                 "/api/profile",
                 {
-                    method: "POST",
-                    body: JSON.stringify({
-                        
-                    }),
+                    method: "GET",
                 },
             );
 
             if (response.ok) {
-                // setProfile(response.data);
-                router.push("/profile");
+                const data = await response.json();
+                setProfile(data.parent);
             } else {
                 const data = await response.json();
                 if (response.status == 500) {
